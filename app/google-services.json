@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "600678981704",
+    "project_id": "acces-membres-7d668",
+    "storage_bucket": "acces-membres-7d668.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:600678981704:android:8ca88b7f77093138c4f87d",
+        "android_client_info": {
+          "package_name": "com.example.accesmembres"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "600678981704-rl8ku2dv1tq7hpmqsa99p722448tvbnh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBV4K3OX6uBQYfxFBEjVQ7aN9rK_LrCiEY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "600678981704-rl8ku2dv1tq7hpmqsa99p722448tvbnh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
