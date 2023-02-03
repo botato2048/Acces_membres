@@ -3,6 +3,7 @@ package com.example.accesmembres;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -73,25 +74,37 @@ public class MemberRegister extends AppCompatActivity {
                 fAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
 
 
-                                                                                            @Override
-                                                                                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                                                                                if (task.isSuccessful()) {
-                                                                                                    Toast.makeText(MemberRegister.this, "Compte crée", Toast.LENGTH_SHORT).show();
-                                                                                                    membreID = fAuth.getCurrentUser().getUid();
-                                                                                                    DocumentReference documentRefererence = firestore.collection("membres").document(membreID);
-                                                                                                    Map<String, Object> membre = new HashMap<>();
-                                                                                                    membre.put("nom", fullname);
-                                                                                                    membre.put("email", email);
-                                                                                                    membre.put("phone", phone);
-                                                                                                    documentRefererence.set(membre).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                                                                        @Override
-                                                                                                        public void onSuccess(Void unused) {
-                                                                                                            Log.d("TAG", "Profil créé pour le membre " + membreID);
-                                                                                                        }
-                                                                                                    }
-                                                                                                });
-                                                                                            }
-                                                                                        }
-                );
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(MemberRegister.this, "Compte crée", Toast.LENGTH_SHORT).show();
+                            membreID = fAuth.getCurrentUser().getUid();
+                            DocumentReference documentRefererence = firestore.collection("membres").document(membreID);
+                            Map<String, Object> membre = new HashMap<>();
+                            membre.put("nom", fullname);
+                            membre.put("email", email);
+                            membre.put("phone", phone);
+                            documentRefererence.set(membre).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                                     @Override
+                                                                                     public void onSuccess(Void unused) {
+                                                                                         Log.d("TAG", "Profil créé pour le membre " + membreID);
+                                                                                     }
+                                                                                 }
+                            );
+                        }
+                    }
+
+                });
             }
-        }
+        });
+
+        login.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),MemberLogin.class));
+            }
+
+        });
+    }
+}
+
