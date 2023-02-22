@@ -73,7 +73,6 @@ public class MemberRegister extends AppCompatActivity {
 
                 fAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
 
-
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
@@ -85,26 +84,25 @@ public class MemberRegister extends AppCompatActivity {
                             membre.put("email", email);
                             membre.put("phone", phone);
                             documentRefererence.set(membre).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                                                     @Override
-                                                                                     public void onSuccess(Void unused) {
-                                                                                         Log.d("TAG", "Profil créé pour le membre " + membreID);
-                                                                                     }
-                                                                                 }
-                            );
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Log.d("TAG", "Profil créé pour le membre " + membreID);
+                                }
+                            });
+                            startActivity(new Intent(getApplicationContext(), MemberLogin.class));
+                        } else {
+
+                            Toast.makeText(MemberRegister.this, "une erreur s'est produite" + task.getException().getMessage(),
+                                    progressBar2.setVisibility(View.GONE);
+
+
                         }
                     }
-
                 });
-            }
-        });
 
-        login.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),MemberLogin.class));
+
             }
 
         });
     }
 }
-
